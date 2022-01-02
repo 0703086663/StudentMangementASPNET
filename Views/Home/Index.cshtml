@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model List<MVCBlog.Models.Post>
+
+@*<div class="container">
+
+    @foreach (var post in Model)
+    {
+        <div class="row">
+            <div class="post col-md-12">
+                <h2 class="title">@post.Title</h2>
+                <div class="about">
+                    Posted on <i>@post.Date</i>
+                    @if (post.Author != null)
+                    {
+                        @:by <i>@post.Author.UserName</i>
+                    }
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Administrators"))
+                        {
+                            @Html.ActionLink("Delete", "Delete", "Posts", new { id = post.Id }, null);
+                        }
+
+                    }
+
+                </div>
+                <div class="body-content">@Html.Raw(@post.Body)</div>
+            </div>
+        </div>
+
+    }
+</div>*@
+
+<main role="main">
+    <br />
+    <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="rounded-circle" src="https://scontent.fsgn5-10.fna.fbcdn.net/v/t1.6435-9/42800938_2211306905812432_8919188034746843136_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=174925&_nc_ohc=hn8_tSN0OzIAX9wHpGQ&_nc_ht=scontent.fsgn5-10.fna&oh=00_AT-YWIcIPM4albkXELZsJ-oTQnktC5oX49ZXy54h4MyFpg&oe=61F43C63" alt="Generic placeholder image" width="140" height="140">
+                <h2>Nguyễn Tiến Thành</h2>
+                <p>This is the person who design the Account detail and User Interface for users. About the Account function, Thanh has hiden serveral columns which are not needed to appear in Interface and added a column for easily manage the Role of the Users. And for Register, Thanh has created 2 more field to sign up are User Name and Role.</p>
+                <p><a class="btn btn-secondary" href="https://www.facebook.com/tienthanh.ne/" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-6">
+                <img class="rounded-circle" src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t1.6435-9/105522179_2704737096515294_6059141188668597434_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=174925&_nc_ohc=3q6dPn92yFAAX9U7iXK&_nc_ht=scontent.fsgn5-8.fna&oh=00_AT-fNJDcBDe_WD1swsMcDLPNGIe6mgVARCw7lD-uTHR30w&oe=61F7859E" alt="Generic placeholder image" width="140" height="140">
+                <h2>Châu Tiến Phong</h2>
+                <p>Phong is the one who has made all of functions for Role, and Authonize like create 3 lists are: Trainee List, Trainer List, Training Staff List. But depend on the Role, each role has been designed to see each List. Like Admin can see all, Staff can see Trainee, Trainer and Trainer can only see Trainee.</p>
+                <p><a class="btn btn-secondary" href="https://www.facebook.com/profile.php?id=100009370909073" role="button">View details »</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+        <!-- START THE FEATURETTES -->
+
+        @foreach (var post in Model)
+        {
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading">
+                        @post.Title <br /> <span class="text-muted">by @post.Author.UserName</span>
+                    </h2>
+                    <span class="text-muted">on @post.Date</span>
+                    @if (User.IsInRole("Administrators"))
+                    {
+                        <button>@Html.ActionLink("Delete", "Delete", "Posts", new { id = post.Id }, null)</button>
+                    }
+                    <div class="body-content">@Html.Raw(@post.Body)</div>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="https://magenest.com/wp-content/uploads/2020/08/Zend-Framework-la-gi.png" data-holder-rendered="true">
+                </div>
+            </div>
+        }
+            <hr class="featurette-divider">
+
+            <!-- /END THE FEATURETTES -->
+
+        </div><!-- /.container -->
+</main>
